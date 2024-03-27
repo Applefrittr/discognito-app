@@ -1,0 +1,12 @@
+@import url("./GuildNav.css");
+@import url("./MessageStream.css");
+@import url("./Guild.css");
+
+#root {
+  height: inherit;
+}
+
+.App {
+  height: inherit;
+  display: flex;
+}

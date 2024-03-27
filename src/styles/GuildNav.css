@@ -1,0 +1,9 @@
+.GuildNav {
+  padding: 1rem;
+}
+
+.guild-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

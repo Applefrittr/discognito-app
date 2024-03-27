@@ -1,0 +1,16 @@
+.Guild {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.channel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.channel-button {
+  width: max-content;
+  margin-left: 1rem;
+}
