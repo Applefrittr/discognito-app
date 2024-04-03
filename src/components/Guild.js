@@ -1,9 +1,11 @@
-function Guild(props) {
-  const [guildName, guildData] = [...props.guild];
+function Guild({ updateChannel, currChannel, guild }) {
+  const [guildName, guildData] = [...guild];
 
   const pickChannel = (e, channel) => {
-    console.log(e.target);
-    props.updateChannel(channel);
+    if (!currChannel) updateChannel(channel);
+    else if (currChannel && currChannel.id !== channel.id)
+      updateChannel(channel);
+    else return;
   };
 
   return (

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import socket from "../API/socket";
 import GuildNav from "./GuildNav";
 import MessageStream from "./MessageStream";
+import AnimatePage from "./AnimatePage";
 import "../styles/App.css";
 
 function App() {
@@ -45,15 +46,22 @@ function App() {
 
     return () => {
       console.log("disconnecting...");
+      socket.off("connect");
       socket.off("get channels");
       socket.disconnect();
     };
   }, []);
   return (
-    <div className="App">
-      <GuildNav guilds={guilds} updateChannel={updateChannel} />
-      <MessageStream currChannel={currChannel} />
-    </div>
+    <AnimatePage>
+      <section className="App">
+        <GuildNav
+          guilds={guilds}
+          updateChannel={updateChannel}
+          currChannel={currChannel}
+        />
+        <MessageStream currChannel={currChannel} />
+      </section>
+    </AnimatePage>
   );
 }
 

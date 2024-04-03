@@ -2,6 +2,11 @@
 @import url("./MessageStream.css");
 @import url("./Guild.css");
 @import url("./Landing.css");
+@import url("./Message.css");
+
+:root {
+  --discord-blue: #7289da;
+}
 
 * {
   box-sizing: border-box;
@@ -15,6 +20,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100svh;
+  background-color: black;
 }
 
 code {
@@ -29,4 +35,10 @@ code {
 .App {
   height: inherit;
   display: flex;
+  background-color: black;
+  color: white;
+}
+
+.view-container {
+  height: inherit;
 }

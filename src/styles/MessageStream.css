@@ -1,4 +1,17 @@
 .MessageStream {
   flex: 1;
-  background-color: antiquewhite;
+  background-color: var(--discord-blue);
+}
+
+.channel-info {
+  padding: 1rem;
+  border-bottom: 1px solid white;
+}
+
+.topic {
+  font-size: 0.8rem;
+}
+
+.messages {
+  padding: 1rem;
 }
