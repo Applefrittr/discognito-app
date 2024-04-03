@@ -17,9 +17,8 @@ function MessageStream(props) {
         id: message.id,
       };
 
-      // If the incoming msg channel Id matches the current channel ID set in the App component, render the new message. ***useRef IMPORTANT HERE!!!!
-      if (channelRef.current && channelRef.current.id === newMsg.channelId)
-        setMessages((prev) => [...prev, newMsg]);
+      // add the recieved message to the messages state array
+      setMessages((prev) => [...prev, newMsg]);
     });
     return () => {
       socket.off("new message");
@@ -29,26 +28,36 @@ function MessageStream(props) {
   // Reset rendered messages when a new channel is selected
   useEffect(() => {
     setMessages([]);
+    socket.emit("leave channel");
+    if (props.currChannel) socket.emit("join channel", props.currChannel.id);
+    console.log("props.currChannel useEffect fired");
+    console.log(props.currChannel);
   }, [props.currChannel]);
 
   return (
     <section className="MessageStream">
-      {props.currChannel && (
-        <div>
-          <i>
-            {props.currChannel.guildName}
-            {">"}#{props.currChannel.name}
-          </i>
-          <p>{props.currChannel.topic}</p>
-        </div>
-      )}
+      {!props.currChannel && <div>Select a channel to begin stream!</div>}
 
-      {messages.map((message) => (
-        <section key={message.id}>
-          <div>{message.author} says...</div>
-          <div>{message.content}</div>
+      {props.currChannel && (
+        <section className="channel-container">
+          <div className="channel-info">
+            <i>
+              {props.currChannel.guildName}
+              {">"}#{props.currChannel.name}
+            </i>
+            <p>{props.currChannel.topic}</p>
+          </div>
+          <div className="messages">
+            <i>Stream started</i>
+            {messages.map((message) => (
+              <section key={message.id}>
+                <div>{message.author} says...</div>
+                <div>{message.content}</div>
+              </section>
+            ))}
+          </div>
         </section>
-      ))}
+      )}
     </section>
   );
 }

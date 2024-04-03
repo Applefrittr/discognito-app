@@ -1,0 +1,21 @@
+.Landing {
+  background-color: black;
+  color: white;
+  height: inherit;
+  overflow: hidden;
+  position: relative;
+}
+
+.Landing::before {
+  content: "";
+  position: absolute;
+  background-image: url("../images/incog.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 120%;
+  height: 100%;
+  top: 10%;
+  left: 10%;
+  z-index: 1;
+  transform: rotate(-30deg);
+}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import socket from "./API/socket";
-import GuildNav from "./components/GuildNav";
-import MessageStream from "./components/MessageStream";
-import "./styles/App.css";
+import socket from "../API/socket";
+import GuildNav from "./GuildNav";
+import MessageStream from "./MessageStream";
+import "../styles/App.css";
 
 function App() {
   const [guilds, setGuilds] = useState(null);
@@ -20,9 +20,7 @@ function App() {
     });
 
     socket.on("get channels", (channels) => {
-      //console.log(channels);
-
-      // mutate channels data revieved from Discognito API into a Map with guild name as key and value set as an object with guild ID, channels, channel info, etc. to be consumed and rendered by ChannelNav component
+      // consolidate channels data revieved from Discognito API into a Map with guild name as key and value set as an object with guild ID, channels, channel info, etc. to be consumed and rendered by ChannelNav component
       const guilds = channels.reduce((prev, curr) => {
         if (!prev.get(curr.guildName)) {
           prev.set(curr.guildName, {
@@ -37,7 +35,6 @@ function App() {
             topic: curr.topic,
           });
         }
-
         return prev;
       }, new Map());
 
