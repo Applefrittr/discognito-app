@@ -13,4 +13,91 @@
 .channel-button {
   width: max-content;
   margin-left: 1rem;
+  background-color: var(--discord-blue);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  transition: all ease-in-out 0.25s;
+}
+
+.channel-button:hover {
+  cursor: pointer;
+  padding: 0.5rem 1.25rem;
+}
+
+.channel-button:active {
+  background-color: #4760b9;
+}
+
+.guild-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+}
+
+.guild-icon {
+  width: 50px;
+  height: auto;
+}
+
+.guild-icon > img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+.default-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: slategray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.guild-snapshot {
+  position: absolute;
+  width: 225px;
+  height: fit-content;
+  background-color: var(--discord-gray);
+  z-index: 5;
+  display: none;
+  left: -10px;
+  top: 45px;
+  border-radius: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.display-snapshot {
+  display: flex;
+}
+
+.show-snapshot {
+  opacity: 1;
+}
+
+.snapshot-icon {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.snapshot-icon > img,
+.snapshot-icon > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: slategray;
 }

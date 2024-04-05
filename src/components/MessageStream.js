@@ -8,13 +8,15 @@ function MessageStream({ currChannel }) {
   const [render, setRender] = useState(false); // state variable used to render in the channel info and message stream
   const [channel, setChannel] = useState(); // state used to asssit with rendering effects
   const [time, setTime] = useState();
+  const imgRef = useRef();
+  const renderTimeoutRef = useRef();
 
   // useRef employed here as we want to ensure our socket listeners have access to the current state of currChannel
   const channelRef = useRef();
   channelRef.current = currChannel;
 
   useEffect(() => {
-    socket.on("new message", (message, author) => {
+    socket.on("new message", (message, author, avatar) => {
       console.log("1", message);
       const newMsg = {
         author: author.username,
@@ -22,6 +24,7 @@ function MessageStream({ currChannel }) {
         timestamp: message.createdTimestamp,
         channelId: message.channelId,
         id: message.id,
+        avatar: avatar,
       };
       console.log("2", newMsg);
       // add the recieved message to the messages state array
@@ -35,15 +38,20 @@ function MessageStream({ currChannel }) {
   // Reset rendered messages when a new channel is selected.  Channel is rendered in with framer-motion effects on channel change.  Also
   // emits socket Room changing events to move the socket into the new channel Room and out of the previous
   useEffect(() => {
+    clearTimeout(renderTimeoutRef.current);
+    imgRef.current.classList.remove("hide");
     setRender(false);
     setMessages([]);
     socket.emit("leave channel");
     if (currChannel) socket.emit("join channel", currChannel.id);
-    setTimeout(() => {
+    renderTimeoutRef.current = setTimeout(() => {
       setRender(true);
       setChannel(currChannel);
-      setTime(new Date().getTime());
-    }, 100);
+      setTime(new Date().toLocaleString());
+      setTimeout(() => {
+        imgRef.current.classList.add("hide");
+      }, 1000);
+    }, 1000);
   }, [currChannel]);
 
   return (
@@ -66,19 +74,18 @@ function MessageStream({ currChannel }) {
             </p>
           </div>
           <div className="messages">
-            <i>Stream started --- {time}</i>
+            <i>
+              Stream started --- <b>{time}</b>
+            </i>
             {messages.map((message, i, messages) => (
               <React.Fragment key={message.id}>
                 <Message message={message} prev={messages[i - 1]} />
               </React.Fragment>
-              // <section key={message.id}>
-              //   <div>{message.author} says...</div>
-              //   <div>{message.content}</div>
-              // </section>
             ))}
           </div>
         </motion.div>
       )}
+      <section className="MessageStream-bgImg hide" ref={imgRef}></section>
     </section>
   );
 }

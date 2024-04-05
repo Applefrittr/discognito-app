@@ -8,8 +8,8 @@ function GuildNav({ guilds, updateChannel, currChannel }) {
 
   return (
     <section className="GuildNav">
-      <h1 className="App-header">Discognito Client</h1>
-      <h2>Channels</h2>
+      <h1>Discognito</h1>
+      <h2>Servers</h2>
       <div className="guild-list">
         {guilds !== null &&
           Array.from(guilds).map((guild, index) => {

@@ -21,11 +21,12 @@ function App() {
     });
 
     socket.on("get channels", (channels) => {
-      // consolidate channels data revieved from Discognito API into a Map with guild name as key and value set as an object with guild ID, channels, channel info, etc. to be consumed and rendered by ChannelNav component
+      // consolidate channels data revieved from Discognito API into a Map with guild name as key and value set as an object with guild ID, icon, channels, channel info, etc. to be consumed and rendered by ChannelNav component
       const guilds = channels.reduce((prev, curr) => {
         if (!prev.get(curr.guildName)) {
           prev.set(curr.guildName, {
             guildID: curr.guildID,
+            guildIcon: curr.guildIcon,
             channels: [{ ID: curr.ID, name: curr.name, topic: curr.topic }],
           });
         } else {

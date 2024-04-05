@@ -1,7 +1,9 @@
 .Message {
-  border: 1px solid white;
   opacity: 0;
   transition: opacity ease-in-out 500ms;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .Message-fadein {
@@ -31,14 +33,28 @@
   font-size: 1.15rem;
 }
 
-.timestamp-hide {
-  display: none;
+.message-avatar {
+  width: 45px;
+  height: inherit;
+  position: relative;
 }
 
-.author-hide {
+.message-avatar > img {
+  width: 41px;
+  height: auto;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.hide {
   display: none;
 }
 
 .pad-top {
   padding-top: 1rem;
+}
+
+.message-container {
+  display: flex;
+  gap: 0.5rem;
 }

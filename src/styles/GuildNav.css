@@ -1,9 +1,19 @@
 .GuildNav {
   padding: 1rem;
+  background-color: black;
+}
+
+.GuildNav > h1 {
+  font-size: 1.75rem;
+}
+
+.GuildNav > h2 {
+  font-size: 1.25rem;
 }
 
 .guild-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding-top: 1rem;
 }

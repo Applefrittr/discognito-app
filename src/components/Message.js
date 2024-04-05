@@ -5,7 +5,7 @@ function Message({ message, prev }) {
   const msgRef = useRef();
   const timeRef = useRef();
   const contentRef = useRef();
-  const showAuthorRef = useRef();
+  const avatarRef = useRef();
   const authorRef = useRef();
 
   // on render, CSS classes are added to component elements to identify sender and reciever, as well as render
@@ -36,8 +36,9 @@ function Message({ message, prev }) {
         120000
     ) {
       if (message.author === prev.author) {
-        authorRef.current.classList.add("author-hide");
-        timeRef.current.classList.add("timestamp-hide");
+        authorRef.current.classList.add("hide");
+        timeRef.current.classList.add("hide");
+        avatarRef.current.classList.add("hide");
       } else {
         msgRef.current.classList.add("pad-top");
       }
@@ -57,20 +58,25 @@ function Message({ message, prev }) {
         </div>
       )}
 
-      <div className="message-content" ref={contentRef}>
-        <div className="message-header">
-          <p className="message-author" ref={authorRef}>
-            <b>{message.author}</b>
-          </p>
-          <p className="message-timestamp" ref={timeRef}>
-            <i>
-              {new Date(message.timestamp).toLocaleTimeString("en", {
-                timeStyle: "short",
-              })}
-            </i>
-          </p>
+      <div className="message-container" ref={contentRef}>
+        <div className="message-avatar">
+          <img src={message.avatar} alt="avatar" ref={avatarRef} />
         </div>
-        <p>{message.content}</p>
+        <div className="message-content">
+          <div className="message-header">
+            <p className="message-author" ref={authorRef}>
+              <b>{message.author}</b>
+            </p>
+            <p className="message-timestamp" ref={timeRef}>
+              <i>
+                {new Date(message.timestamp).toLocaleTimeString("en", {
+                  timeStyle: "short",
+                })}
+              </i>
+            </p>
+          </div>
+          <p>{message.content}</p>
+        </div>
       </div>
     </div>
   );
