@@ -1,6 +1,7 @@
 .GuildNav {
   padding: 1rem;
   background-color: black;
+  width: 275px;
 }
 
 .GuildNav > h1 {

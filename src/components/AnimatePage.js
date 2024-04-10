@@ -18,7 +18,7 @@ const AnimatePage = ({ children }) => {
         duration: 1,
         type: "spring",
       }}
-      className="view-container"
+      className="motion-container"
     >
       {children}
     </motion.section>

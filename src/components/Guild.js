@@ -1,8 +1,9 @@
 import { useRef } from "react";
+import { motion } from "framer-motion";
 
 function Guild({ updateChannel, currChannel, guild }) {
   const [guildName, guildData] = [...guild];
-  const snapRef = useRef();
+  //const snapRef = useRef();
 
   // create a default icon using the first letters of each word in the guild's name, in the same style as Discord
   // Then conditional render this or the guild's icon pulled from the API
@@ -26,6 +27,7 @@ function Guild({ updateChannel, currChannel, guild }) {
     else return;
   };
 
+  // toggle display for guild metadata pupup modal
   // const toggleSnapShot = () => {
   //   if (snapRef.current.classList.contains("display-snapshot")) {
   //     snapRef.current.classList.toggle("show-snapshot");
@@ -41,7 +43,12 @@ function Guild({ updateChannel, currChannel, guild }) {
   // };
 
   return (
-    <div className="Guild">
+    <motion.div
+      className="Guild"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className="guild-header">
         <div className="guild-icon">
           {guildData.guildIcon && <img src={guildData.guildIcon} alt="Icon" />}
@@ -88,7 +95,7 @@ function Guild({ updateChannel, currChannel, guild }) {
           );
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
 

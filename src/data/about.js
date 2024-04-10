@@ -1,0 +1,4 @@
+const about =
+  "Born out of sheer necessity, Discognito is designed to anonymously monitor Discord server chat while you are completely logged out.  Once Discongito is connected, any servers the Discognito Bot is a member of will have their text channels streamed straight to the app.  Feel free to monitor the conversations behind a wall of anonymity.  Feel like someone isn’t genuine when you’re logged into the server?  Simply log out of Discord and connect the Discognito app and expose them for who they truly are.  Messages are forwarded to the app in real time and displayed with usernames and timestamps attached, in the same fashion as Discord.  Feel free to snapshot the stream at any point to get hard evidence when confrontation inevitably happens.  Feedback welcome as well as any issues encountered, reach out to the Discognito team below!";
+
+export default about;
