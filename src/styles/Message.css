@@ -58,3 +58,8 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.content-link {
+  text-decoration: none;
+  color: dodgerblue;
+}

@@ -1,4 +1,6 @@
 import { useRef, useState, useEffect } from "react";
+import DefaultIcon from "../assets/images/default.png";
+import Linkify from "linkify-react";
 
 function Message({ message, prev }) {
   const [dateLine, setDateLine] = useState(false);
@@ -14,8 +16,6 @@ function Message({ message, prev }) {
     setTimeout(() => {
       msgRef.current.classList.add("Message-fadein");
     }, 0);
-
-    console.log("msg time:", message.timestamp);
 
     // if the current message is sent in a later date than the previous message, render in the date the message is sent - the date line
     if (
@@ -60,7 +60,7 @@ function Message({ message, prev }) {
 
       <div className="message-container" ref={contentRef}>
         <div className="message-avatar">
-          <img src={message.avatar} alt="avatar" ref={avatarRef} />
+          <img src={message.avatar} alt={DefaultIcon} ref={avatarRef} />
         </div>
         <div className="message-content">
           <div className="message-header">
@@ -75,7 +75,9 @@ function Message({ message, prev }) {
               </i>
             </p>
           </div>
-          <p>{message.content}</p>
+          <Linkify as="p" options={{ className: "content-link" }}>
+            {message.content}
+          </Linkify>
         </div>
       </div>
     </div>

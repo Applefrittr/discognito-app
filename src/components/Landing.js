@@ -52,9 +52,9 @@ function Landing() {
         <section className="testimonial-section" ref={testRef}>
           <h2>They're talking about us!</h2>
           <div ref={testContentRef}>
-            {testimonials.map((testimonial) => {
+            {testimonials.map((testimonial, i) => {
               return (
-                <div className="testimonial">
+                <div className="testimonial" key={i}>
                   <div>
                     <img
                       src={testimonial.avatar}
@@ -86,17 +86,17 @@ function Landing() {
           </div>
         </section>
         <footer className="contact">
-          <ul class="contact-links-container">
-            <li class="link-container">
+          <ul className="contact-links-container">
+            <li className="link-container">
               <a
                 href="https://github.com/Applefrittr"
                 target="_blank"
                 rel="noreferrer"
               >
-                <i class="devicon-github-original colored"></i>
+                <i className="devicon-github-original colored"></i>
               </a>
             </li>
-            <li class="link-container">
+            <li className="link-container">
               <a href="mailto: abc@example.com">
                 <img src={email} alt="email" />
               </a>
