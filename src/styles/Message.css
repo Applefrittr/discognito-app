@@ -34,7 +34,7 @@
 }
 
 .message-avatar {
-  width: 45px;
+  min-width: 45px;
   height: inherit;
   position: relative;
 }
@@ -59,7 +59,26 @@
   gap: 0.5rem;
 }
 
+.message-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .content-link {
   text-decoration: none;
   color: dodgerblue;
+  word-wrap: anywhere;
+}
+
+.embed-video {
+  flex: 1;
+  /* max-width: max-content; */
+  padding: 0.2rem;
+}
+
+video {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
