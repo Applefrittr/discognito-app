@@ -18,6 +18,7 @@ function MessageStream({ currChannel }) {
   channelRef.current = currChannel;
 
   useEffect(() => {
+    // listens for new message emitted by API, updates the messages state to render new message
     socket.on("new message", (message, author, avatar, embeds) => {
       const newMsg = {
         author: author.username,
@@ -31,8 +32,14 @@ function MessageStream({ currChannel }) {
       // add the recieved message to the messages state array
       setMessages((prev) => [...prev, newMsg]);
     });
+
+    // listens for a message deletion from API, will filter out the deleted message from messages state
+    socket.on("delete message", (id) => {
+      setMessages((prev) => prev.filter((msg) => id !== msg.id));
+    });
     return () => {
       socket.off("new message");
+      socket.off("delete message");
     };
   }, []);
 

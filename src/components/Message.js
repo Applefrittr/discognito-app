@@ -52,7 +52,8 @@ function Message({ message, prev }) {
 
   // framer motion's useInView method used to pause the embedded video while not in the viewport, hopefully to save on resources
   useEffect(() => {
-    !videoInView ? videoRef.current.pause() : videoRef.current.play();
+    if (videoRef.current)
+      !videoInView ? videoRef.current.pause() : videoRef.current.play();
   }, [videoInView]);
 
   return (
