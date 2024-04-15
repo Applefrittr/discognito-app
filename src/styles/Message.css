@@ -65,6 +65,16 @@
   flex: 1;
 }
 
+.content-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.content-container > i {
+  font-size: 0.8rem;
+}
+
 .content-link {
   text-decoration: none;
   color: dodgerblue;

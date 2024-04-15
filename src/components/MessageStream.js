@@ -37,9 +37,28 @@ function MessageStream({ currChannel }) {
     socket.on("delete message", (id) => {
       setMessages((prev) => prev.filter((msg) => id !== msg.id));
     });
+
+    // listens for a message update/edit.  Identifies the target message in the messages array via recieved id, updates content adttribute, and adds new edit attribute to message.
+    // messages state is then updated with the edited message in the array
+    socket.on("update message", (id, content) => {
+      setMessages((prev) => {
+        if (prev.length > 0) {
+          const updatedMessages = prev.map((message) => {
+            if (message.id === id) {
+              message.content = content;
+              message.edit = true;
+            }
+            return message;
+          });
+          return updatedMessages;
+        } else return prev;
+      });
+    });
+
     return () => {
       socket.off("new message");
       socket.off("delete message");
+      socket.off("update message");
     };
   }, []);
 

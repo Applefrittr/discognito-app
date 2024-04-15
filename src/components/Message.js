@@ -85,9 +85,12 @@ function Message({ message, prev }) {
             </p>
           </div>
           {/* Use Linkify to create a links to any URLs contained within the message content.  Remove content if there is an embedded Tenor GIF */}
-          <Linkify as="p" options={{ className: "content-link" }}>
-            {message.embeds.length === 0 ? message.content : ""}
-          </Linkify>
+          <div className="content-container">
+            <Linkify as="p" options={{ className: "content-link" }}>
+              {message.embeds.length === 0 ? message.content : ""}
+            </Linkify>
+            {message.edit && <i>(edit)</i>}
+          </div>
           {/* Render any Tenor GIFs contained within the recieved message object*/}
           {message.embeds.length > 0 &&
             message.embeds.map((embed, i) => {
