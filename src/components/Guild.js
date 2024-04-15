@@ -1,9 +1,7 @@
-import { useRef } from "react";
 import { motion } from "framer-motion";
 
 function Guild({ updateChannel, currChannel, guild }) {
   const [guildName, guildData] = [...guild];
-  //const snapRef = useRef();
 
   // create a default icon using the first letters of each word in the guild's name, in the same style as Discord
   // Then conditional render this or the guild's icon pulled from the API
@@ -27,21 +25,6 @@ function Guild({ updateChannel, currChannel, guild }) {
     else return;
   };
 
-  // toggle display for guild metadata pupup modal
-  // const toggleSnapShot = () => {
-  //   if (snapRef.current.classList.contains("display-snapshot")) {
-  //     snapRef.current.classList.toggle("show-snapshot");
-  //     setTimeout(() => {
-  //       snapRef.current.classList.toggle("display-snapshot");
-  //     }, 500);
-  //   } else {
-  //     snapRef.current.classList.toggle("display-snapshot");
-  //     setTimeout(() => {
-  //       snapRef.current.classList.toggle("show-snapshot");
-  //     }, 100);
-  //   }
-  // };
-
   return (
     <motion.div
       className="Guild"
@@ -57,23 +40,6 @@ function Guild({ updateChannel, currChannel, guild }) {
           )}
         </div>
         <b>{guildName}</b>
-        {/* 
-        <section className="guild-snapshot" ref={snapRef}>
-          <div className="snapshot-icon">
-            {guildData.guildIcon && (
-              <img src={guildData.guildIcon} alt="Icon" />
-            )}
-            {!guildData.guildIcon && <div>{defaultIcon}</div>}
-          </div>
-          <b>
-            <i>{guildName}</i>
-          </b>
-          <p>Created: ???</p>
-          <div>
-            <b>Members: 10</b>
-            <b>Online:2</b>
-          </div>
-        </section> */}
       </div>
       <div className="channel-list">
         {guildData.channels.map((channel) => {

@@ -50,31 +50,33 @@ function MessageStream({ currChannel }) {
   // Reset rendered messages when a new channel is selected.  Channel is rendered in with framer-motion effects on channel change.  Also
   // emits socket Room changing events to move the socket into the new channel Room and out of the previous
   useEffect(() => {
-    clearTimeout(renderTimeoutRef1.current); // reset the timeouts for a smooth render (in the event that new channel selected before render animation finishes)
-    clearTimeout(renderTimeoutRef2.current);
-    //imgRef.current.classList.add("img-show");
-    setRender(false);
-    setMessages([]);
-    socket.emit("leave channel");
-    if (currChannel) socket.emit("join channel", currChannel.id);
-    renderTimeoutRef1.current = setTimeout(() => {
-      setRender(true);
-      setChannel(currChannel);
-      setTime(new Date().toLocaleString());
-      renderTimeoutRef2.current = setTimeout(() => {
-        //imgRef.current.classList.remove("img-show");
+    if (currChannel) {
+      clearTimeout(renderTimeoutRef1.current); // reset the timeouts for a smooth render (in the event that new channel selected before render animation finishes)
+      clearTimeout(renderTimeoutRef2.current);
+      imgRef.current.classList.add("img-show");
+      setRender(false);
+      setMessages([]);
+      socket.emit("leave channel");
+      if (currChannel) socket.emit("join channel", currChannel.id);
+      renderTimeoutRef1.current = setTimeout(() => {
+        setRender(true);
+        setChannel(currChannel);
+        setTime(new Date().toLocaleString());
+        renderTimeoutRef2.current = setTimeout(() => {
+          imgRef.current.classList.remove("img-show");
+        }, 1000);
       }, 1000);
-    }, 1000);
+    }
   }, [currChannel]);
 
   return (
     <section className="MessageStream">
-      {/* <div className="MessageStream-bgImg" ref={imgRef}></div> */}
-      {!channel && (
+      {!currChannel && (
         <div className="placeholder">
           <i>{"<---"} Select a channel to begin a stream!</i>
         </div>
       )}
+      <div className="MessageStream-bgImg" ref={imgRef}></div>
       {render && channel && (
         <motion.div
           className="channel-container"
