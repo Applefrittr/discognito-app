@@ -2,6 +2,9 @@
   padding: 1rem;
   background-color: black;
   width: 275px;
+  transition: all ease-in-out 1s;
+  height: inherit;
+  transform: translateX(0%);
 }
 
 .GuildNav > h1 {
@@ -12,9 +15,54 @@
   font-size: 1.25rem;
 }
 
+.GuildNav-slider {
+  position: absolute;
+  padding: 1rem 0;
+  border-radius: 5px;
+  right: 0;
+  top: 50%;
+  transform: translate(85%, -50%);
+  width: max-content;
+  background-color: black;
+  display: flex;
+  align-items: center;
+}
+
+.cevron {
+  width: 35px;
+  height: auto;
+  transition: all ease-in-out 1s;
+}
+
+.flip {
+  transform: scale(1);
+}
+
+.nav-slideout {
+  transform: translateX(0%);
+}
+
 .guild-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding-top: 1rem;
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 500px) {
+  .GuildNav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  .nav-slideout {
+    transform: translateX(-100%);
+  }
+
+  .flip {
+    transform: scale(-1);
+  }
 }
