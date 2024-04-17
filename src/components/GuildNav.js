@@ -1,26 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Guild from "./Guild";
 import Cevron from "../assets/images/cevron.png";
 
 function GuildNav({ guilds, updateChannel, currChannel }) {
-  const navRef = useRef();
-  const cevronRef = useRef();
+  const [displayNav, setDisplayNav] = useState(true); // state to determin whether to display Nav on smaller screens
 
-  // Navbar slider button.  Button will be displyed in UI on smaller screens, whihc will allow
+  // Navbar slider button.  Button will be displyed in UI on smaller screens, which will allow
   // the user to slide the guild nav in and out of the screen, keeping both the nav and
   // Message Stream elements user freindly
   const slideNav = () => {
-    if (navRef.current.classList.contains("nav-slideout")) {
-      navRef.current.classList.remove("nav-slideout");
-      cevronRef.current.classList.add("flip");
-    } else {
-      navRef.current.classList.add("nav-slideout");
-      cevronRef.current.classList.remove("flip");
-    }
+    setDisplayNav((prev) => !prev);
   };
 
   return (
-    <section className="GuildNav" ref={navRef}>
+    <section className={`GuildNav ${displayNav ? "" : "nav-slideout"}`}>
       <h1>Discognito</h1>
       <h2>Servers</h2>
       <div className="guild-list">
@@ -38,7 +31,7 @@ function GuildNav({ guilds, updateChannel, currChannel }) {
           })}
       </div>
       <div className="GuildNav-slider" onClick={slideNav}>
-        <img src={Cevron} className="cevron" ref={cevronRef} />
+        <img src={Cevron} className={`cevron ${displayNav ? "flip" : ""}`} />
       </div>
     </section>
   );
