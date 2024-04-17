@@ -8,7 +8,8 @@ function MessageStream({ currChannel }) {
   const [render, setRender] = useState(false); // state variable used to render in the channel info and message stream
   const [channel, setChannel] = useState(); // state used to asssit with rendering effects
   const [time, setTime] = useState();
-  const imgRef = useRef();
+  const [loading, setLoading] = useState(false);
+
   const renderTimeoutRef1 = useRef(); // creating refs to timeout variables
   const renderTimeoutRef2 = useRef();
   const bottomRef = useRef(); // targets bottom element in the messages container, used for auto scrolling when new messages are posted
@@ -63,6 +64,7 @@ function MessageStream({ currChannel }) {
     };
   }, []);
 
+  // When the messages state is updated, auto scroll to the bottom of the message stream (the bottom div) to display new msg in UI
   useEffect(() => {
     setTimeout(() => {
       bottomRef.current?.scrollIntoView({
@@ -80,7 +82,7 @@ function MessageStream({ currChannel }) {
     if (currChannel) {
       clearTimeout(renderTimeoutRef1.current); // reset the timeouts for a smooth render (in the event that new channel selected before render animation finishes)
       clearTimeout(renderTimeoutRef2.current);
-      imgRef.current.classList.add("img-show");
+      setLoading(true);
       setRender(false);
       setMessages([]);
       socket.emit("leave channel");
@@ -90,7 +92,7 @@ function MessageStream({ currChannel }) {
         setChannel(currChannel);
         setTime(new Date().toLocaleString());
         renderTimeoutRef2.current = setTimeout(() => {
-          imgRef.current.classList.remove("img-show");
+          setLoading(false);
         }, 1000);
       }, 1000);
     }
@@ -103,7 +105,7 @@ function MessageStream({ currChannel }) {
           <i>{"<---"} Select a channel to begin a stream!</i>
         </div>
       )}
-      <div className="MessageStream-bgImg" ref={imgRef}></div>
+      <div className={`MessageStream-bgImg ${loading ? "img-show" : ""}`}></div>
       {render && channel && (
         <motion.div
           className="channel-container"
