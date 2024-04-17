@@ -19,7 +19,7 @@ function MessageStream({ currChannel }) {
 
   useEffect(() => {
     // listens for new message emitted by API, updates the messages state to render new message
-    socket.on("new message", (message, author, avatar, embeds) => {
+    socket.on("new message", (message, author, avatar, embeds, attachments) => {
       const newMsg = {
         author: author.username,
         content: message.content,
@@ -28,8 +28,10 @@ function MessageStream({ currChannel }) {
         id: message.id,
         avatar: avatar,
         embeds: [...embeds],
+        attachments: [...attachments],
       };
       // add the recieved message to the messages state array
+      console.log(newMsg.attachments);
       setMessages((prev) => [...prev, newMsg]);
     });
 

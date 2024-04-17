@@ -92,3 +92,14 @@ video {
   height: auto;
   border-radius: 5px;
 }
+
+.attachment {
+  flex: 1;
+  padding: 0.2rem;
+}
+
+.attachment > img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}

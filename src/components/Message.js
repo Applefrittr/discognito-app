@@ -109,6 +109,21 @@ function Message({ message, prev }) {
                 </div>
               );
             })}
+          {message.attachments.length > 0 &&
+            message.attachments.map((attachment, i) => {
+              return (
+                <div
+                  className="attachment"
+                  key={i}
+                  style={{
+                    maxWidth: attachment.width,
+                    maxHeight: attachment.height,
+                  }}
+                >
+                  <img src={attachment.url} />
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
