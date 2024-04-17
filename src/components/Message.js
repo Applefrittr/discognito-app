@@ -4,20 +4,22 @@ import DefaultIcon from "../assets/images/default.png";
 import Linkify from "linkify-react";
 
 function Message({ message, prev }) {
+  // State variables used conditionally to render different aspects of the Message component, depending on previous Message component in MessageStream
   const [dateLine, setDateLine] = useState(false);
-  const msgRef = useRef();
-  const timeRef = useRef();
-  const contentRef = useRef();
-  const avatarRef = useRef();
-  const authorRef = useRef();
+  const [render, setRender] = useState(false);
+  const [topPadding, setTopPadding] = useState(false);
+  const [displayAuthor, setDisplayAuthor] = useState(true);
+  const [displayTime, setDisplayTime] = useState(true);
+  const [displayAvatar, setDisplayAvatar] = useState(true);
+
   const videoRef = useRef();
   const videoInView = useInView(videoRef);
 
-  // on render, CSS classes are added to component elements to identify sender and reciever, as well as render
-  // date's between messages as well as timestamps
+  // on render, CSS classes are modified via state variables to simulate look and feel of Discord's chat UI
   useEffect(() => {
+    // on component render, set render state to true.  Adds a fade-in effect when message component is rendered
     setTimeout(() => {
-      msgRef.current.classList.add("Message-fadein");
+      setRender(true);
     }, 0);
 
     // if the current message is sent in a later date than the previous message, render in the date the message is sent - the date line
@@ -39,14 +41,14 @@ function Message({ message, prev }) {
         120000
     ) {
       if (message.author === prev.author) {
-        authorRef.current.classList.add("hide");
-        timeRef.current.classList.add("hide");
-        avatarRef.current.classList.add("hide");
+        setDisplayAuthor(false);
+        setDisplayTime(false);
+        setDisplayAvatar(false);
       } else {
-        msgRef.current.classList.add("pad-top");
+        setTopPadding(true);
       }
     } else {
-      msgRef.current.classList.add("pad-top");
+      setTopPadding(true);
     }
   }, []);
 
@@ -57,7 +59,11 @@ function Message({ message, prev }) {
   }, [videoInView]);
 
   return (
-    <div className="Message" ref={msgRef}>
+    <div
+      className={`Message ${render ? "Message-fadein" : ""} ${
+        topPadding ? "pad-top" : ""
+      }`}
+    >
       {dateLine && (
         <div className="date-line">
           <b>
@@ -67,16 +73,20 @@ function Message({ message, prev }) {
         </div>
       )}
 
-      <div className="message-container" ref={contentRef}>
+      <div className="message-container">
         <div className="message-avatar">
-          <img src={message.avatar} alt={DefaultIcon} ref={avatarRef} />
+          <img
+            src={message.avatar}
+            alt={DefaultIcon}
+            className={`${displayAvatar ? "" : "hide"}`}
+          />
         </div>
         <div className="message-content">
           <div className="message-header">
-            <p className="message-author" ref={authorRef}>
+            <p className={`message-author ${displayAuthor ? "" : "hide"}`}>
               <b>{message.author}</b>
             </p>
-            <p className="message-timestamp" ref={timeRef}>
+            <p className={`message-timestamp ${displayTime ? "" : "hide"}`}>
               <i>
                 {new Date(message.timestamp).toLocaleTimeString("en", {
                   timeStyle: "short",
@@ -109,6 +119,7 @@ function Message({ message, prev }) {
                 </div>
               );
             })}
+          {/* Render any attachments contained within the recieved message object */}
           {message.attachments.length > 0 &&
             message.attachments.map((attachment, i) => {
               return (
