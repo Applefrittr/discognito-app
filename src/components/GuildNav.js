@@ -19,10 +19,6 @@ function GuildNav({ guilds, updateChannel, currChannel }) {
     }
   };
 
-  useEffect(() => {
-    if (guilds) console.log(Array.from(guilds));
-  }, [guilds]);
-
   return (
     <section className="GuildNav" ref={navRef}>
       <h1>Discognito</h1>

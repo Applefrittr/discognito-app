@@ -31,7 +31,6 @@ function MessageStream({ currChannel }) {
         attachments: [...attachments],
       };
       // add the recieved message to the messages state array
-      console.log(newMsg.attachments);
       setMessages((prev) => [...prev, newMsg]);
     });
 

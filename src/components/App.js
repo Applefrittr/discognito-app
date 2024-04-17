@@ -15,20 +15,20 @@ function App() {
   const navigate = useNavigate();
 
   const updateChannel = (channel) => {
-    console.log("channel:", channel);
     setCurrChannel(channel);
   };
 
   useEffect(() => {
     socket.connect();
 
+    /*
+     * Connection error, a bit of a catch all when related to API.  If the server crashes, client can't connect due to bad connection, etc., an error message will
+     * render in the client UI and will try to reconnect.  If client fails to reconnect, a button to route the client back to the home page
+     * will appear.
+     */
     socket.on("connect_error", () => {
       setRenderConnErr(true);
       setReconnCount((prev) => prev + 1);
-    });
-
-    socket.on("connect", () => {
-      console.log("connected to server!");
     });
 
     socket.on("get channels", (channels) => {
@@ -36,7 +36,7 @@ function App() {
         channel info, etc. to be consumed and rendered by ChannelNav component
         example: 
         guilds (Map): {
-           guildName --> {
+           guildName1 --> {
               guildID : guild's ID,
               guildIcon : guild's Icon
               channels: [
@@ -48,6 +48,7 @@ function App() {
                 ...
               ]
            },
+           guildName2 --> { ... },
            ...
         }
 
@@ -74,7 +75,6 @@ function App() {
     });
 
     return () => {
-      console.log("disconnecting...");
       socket.off("connect");
       socket.off("get channels");
       socket.off("connect_error");
