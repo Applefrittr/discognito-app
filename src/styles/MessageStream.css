@@ -65,6 +65,11 @@
 
 .messages {
   padding: 1rem;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.messages:hover {
   overflow-y: scroll;
 }
 
