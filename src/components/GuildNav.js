@@ -31,7 +31,11 @@ function GuildNav({ guilds, updateChannel, currChannel }) {
           })}
       </div>
       <div className="GuildNav-slider" onClick={slideNav}>
-        <img src={Cevron} className={`cevron ${displayNav ? "flip" : ""}`} />
+        <img
+          src={Cevron}
+          className={`cevron ${displayNav ? "flip" : ""}`}
+          alt=""
+        />
       </div>
     </section>
   );
