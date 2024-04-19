@@ -131,7 +131,7 @@ function Message({ message, prev }) {
                     maxHeight: attachment.height,
                   }}
                 >
-                  <img src={attachment.url} />
+                  <img src={attachment.url} alt="" />
                 </div>
               );
             })}
