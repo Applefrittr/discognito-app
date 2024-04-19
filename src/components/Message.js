@@ -115,6 +115,7 @@ function Message({ message, prev }) {
                     alt="imbeded attachment"
                     loop
                     ref={videoRef}
+                    playsInline
                   />
                 </div>
               );
