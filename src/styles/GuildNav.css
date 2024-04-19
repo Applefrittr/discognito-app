@@ -49,12 +49,8 @@
   flex-direction: column;
   gap: 1rem;
   padding-top: 1rem;
-  overflow-y: hidden;
-  scrollbar-width: thin;
-}
-
-.guild-list:hover {
   overflow-y: scroll;
+  scrollbar-width: thin;
 }
 
 @media screen and (max-width: 500px) {
