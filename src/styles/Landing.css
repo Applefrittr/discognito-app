@@ -119,7 +119,8 @@
   align-items: center;
 }
 
-.about-container > p {
+.about-container > div > p {
+  padding: 1rem;
   max-width: 500px;
 }
 

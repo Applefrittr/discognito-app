@@ -74,7 +74,18 @@ function Landing() {
         <section className="about">
           <h2>You are Big Brother</h2>
           <div className="about-container">
-            <p>{about}</p>
+            <div>
+              <p>{about}</p>
+              <p>
+                Add Discognito to your Discord Server:{" "}
+                <a
+                  href="https://discord.com/oauth2/authorize?client_id=1219724710065995907"
+                  style={{ textDecoration: "none", color: "#7289da" }}
+                >
+                  Discognito
+                </a>
+              </p>
+            </div>
             <div className="demo-container">
               <img
                 src={demo}
