@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f833349b.css",
+    "main.js": "/static/js/main.d61b7f1c.js",
+    "static/media/DiscogDemo.gif": "/static/media/DiscogDemo.2e49805982a269c91c4d.gif",
+    "static/media/incog-landing.png": "/static/media/incog-landing.0464e0083aa04d002b21.png",
+    "static/media/incog200px.png": "/static/media/incog200px.4fef58f41c6a9501b1d7.png",
+    "index.html": "/index.html",
+    "main.f833349b.css.map": "/static/css/main.f833349b.css.map",
+    "main.d61b7f1c.js.map": "/static/js/main.d61b7f1c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f833349b.css",
+    "static/js/main.d61b7f1c.js"
+  ]
+}
