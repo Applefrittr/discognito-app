@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/discognito-app/static/css/main.11319bd6.css",
-    "main.js": "/discognito-app/static/js/main.c3f8533e.js",
+    "main.js": "/discognito-app/static/js/main.811ed2c7.js",
     "static/media/DiscogDemo.gif": "/discognito-app/static/media/DiscogDemo.2e49805982a269c91c4d.gif",
     "static/media/incog-landing.png": "/discognito-app/static/media/incog-landing.0464e0083aa04d002b21.png",
     "static/media/incog200px.png": "/discognito-app/static/media/incog200px.4fef58f41c6a9501b1d7.png",
     "index.html": "/discognito-app/index.html",
     "main.11319bd6.css.map": "/discognito-app/static/css/main.11319bd6.css.map",
-    "main.c3f8533e.js.map": "/discognito-app/static/js/main.c3f8533e.js.map"
+    "main.811ed2c7.js.map": "/discognito-app/static/js/main.811ed2c7.js.map"
   },
   "entrypoints": [
     "static/css/main.11319bd6.css",
-    "static/js/main.c3f8533e.js"
+    "static/js/main.811ed2c7.js"
   ]
 }
