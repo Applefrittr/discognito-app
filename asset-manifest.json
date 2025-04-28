@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.f833349b.css",
-    "main.js": "/static/js/main.d61b7f1c.js",
-    "static/media/DiscogDemo.gif": "/static/media/DiscogDemo.2e49805982a269c91c4d.gif",
-    "static/media/incog-landing.png": "/static/media/incog-landing.0464e0083aa04d002b21.png",
-    "static/media/incog200px.png": "/static/media/incog200px.4fef58f41c6a9501b1d7.png",
-    "index.html": "/index.html",
-    "main.f833349b.css.map": "/static/css/main.f833349b.css.map",
-    "main.d61b7f1c.js.map": "/static/js/main.d61b7f1c.js.map"
+    "main.css": "/discognito-app/static/css/main.11319bd6.css",
+    "main.js": "/discognito-app/static/js/main.7d0d9ca6.js",
+    "static/media/DiscogDemo.gif": "/discognito-app/static/media/DiscogDemo.2e49805982a269c91c4d.gif",
+    "static/media/incog-landing.png": "/discognito-app/static/media/incog-landing.0464e0083aa04d002b21.png",
+    "static/media/incog200px.png": "/discognito-app/static/media/incog200px.4fef58f41c6a9501b1d7.png",
+    "index.html": "/discognito-app/index.html",
+    "main.11319bd6.css.map": "/discognito-app/static/css/main.11319bd6.css.map",
+    "main.7d0d9ca6.js.map": "/discognito-app/static/js/main.7d0d9ca6.js.map"
   },
   "entrypoints": [
-    "static/css/main.f833349b.css",
-    "static/js/main.d61b7f1c.js"
+    "static/css/main.11319bd6.css",
+    "static/js/main.7d0d9ca6.js"
   ]
 }
