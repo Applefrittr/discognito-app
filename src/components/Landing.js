@@ -11,21 +11,19 @@ import email from "../assets/images/email.png";
 function Landing() {
   const testRef = useRef();
   const testContentRef = useRef();
-  const testInVIew = useInView(testContentRef);
+  const testInView = useInView(testContentRef);
 
   const demoRef = useRef();
   const demoInView = useInView(demoRef);
 
   useEffect(() => {
-    if (testRef.current.classList.contains("scale"))
-      testRef.current.classList.remove("scale");
-    else testRef.current.classList.add("scale");
-  }, [testInVIew]);
+    if (testInView) testRef.current.classList.add("scale");
+    else testRef.current.classList.remove("scale");
+  }, [testInView]);
 
   useEffect(() => {
-    if (demoRef.current.classList.contains("demo-slidein"))
-      demoRef.current.classList.remove("demo-slidein");
-    else demoRef.current.classList.add("demo-slidein");
+    if (demoInView) demoRef.current.classList.add("demo-slidein");
+    else demoRef.current.classList.remove("demo-slidein");
   }, [demoInView]);
 
   return (
